@@ -4,7 +4,13 @@
 
 ---
 
-To install all required libraries, run the following command:
+- To clone this repository:
+
+```bash
+git clone https://github.com/ShifatHasanGNS/NML-G25.git
+```
+
+- To install all required libraries:
 
 ```bash
 ./pyvenv/bin/python3 -m pip install -r requirements.txt
