@@ -24,12 +24,11 @@ def is_transcendental(equation_str: str):
         return None
 
 
-def evaluate_equation(equation_str: str, x_val: float) -> float:
+def evaluate(equation_str: str, x_val: float) -> float:
     try:
         x = symbols('x')
         expr = sympify(equation_str)
         result = float(expr.subs(x, x_val))
-        print(result)
         return result
     except Exception as e:
         print("Error in parsing the equation:", e)

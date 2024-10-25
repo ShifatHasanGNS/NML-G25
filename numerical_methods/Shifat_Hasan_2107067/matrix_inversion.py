@@ -35,7 +35,7 @@ def complete_row_echelon(matrix: np.ndarray) -> np.ndarray:
 
 
 def inverse_matrix():
-    n = int(input("Enter the dimension of the matrix: "))
+    n = int(input("\nEnter the dimension of the matrix: "))
     rows, cols = n, n
 
     M = np.array([], dtype=float)

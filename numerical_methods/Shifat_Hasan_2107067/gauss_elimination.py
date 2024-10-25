@@ -40,7 +40,7 @@ def gauss(Augmented_Matrix: np.ndarray) -> tuple[np.ndarray, list[float]]:
 
 
 def solve_using_gaussian_elimination():
-    n = int(input("Enter the number of linear-equations for your system: "))
+    n = int(input("\nEnter the number of linear-equations for your system: "))
     rows, cols = n, n + 1
 
     M = np.array([], dtype=float)
