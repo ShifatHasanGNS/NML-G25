@@ -1,13 +1,13 @@
 import numerical_methods as nm
 
 if __name__ == '__main__':
+    nm.clear_screen()
+
     print("\n# ----- Welcome from NML::G25 ----- #")
 
     try:
         while True:
             should_continue = input("\n\nDo you want to continue? (y/n): ")
-
-            nm.clear_screen()
 
             if should_continue.lower() == 'n':
                 print("\n\n# ----- Thank you for using NML::G25 ----- #\n")
@@ -47,8 +47,6 @@ if __name__ == '__main__':
             }
 
             choice = input("Enter your choice [example: 1d]:  ")
-
-            nm.clear_screen()
 
             if choice in choice_dictionary:
                 print(
