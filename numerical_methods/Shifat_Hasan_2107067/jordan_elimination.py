@@ -78,12 +78,3 @@ def solve_using_jordan_elimination_method():
     except Exception as e:
         print("Error in solve_using_jordan_elimination_method:", e)
         return None
-
-
-# Test Input
-'''
-1 2 -1 1 6
--1 1 2 -1 3
-2 -1 2 2 14
-1 1 -1 2 8
-'''

@@ -51,10 +51,12 @@ if __name__ == '__main__':
             nm.clear_screen()
 
             if choice in choice_dictionary:
-                print(f"\n<<---- {choice_dictionary[choice]['title']} ---->>")
+                print(
+                    f"\n<<---- {choice_dictionary[choice]['title']} ---->>\n")
                 choice_dictionary[choice]['method']()
+                print()
             else:
-                print("Invalid choice. Please try again.")
+                print("\nInvalid choice. Please try again.\n")
 
     except Exception as e:
         print(f"Error: {e}")

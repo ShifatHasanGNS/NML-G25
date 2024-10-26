@@ -60,11 +60,3 @@ def inverse_matrix():
     except Exception as e:
         print("Error in inverse_matrix:", e)
         return None
-
-
-# Test Input
-'''
-4 7 2
-3 6 1
-2 5 3
-'''
