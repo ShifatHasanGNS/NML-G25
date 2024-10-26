@@ -42,7 +42,6 @@ if __name__ == '__main__':
                 "2c": {"title": "Solution of Non-linear Equations > Secant method", "method": nm.solve_using_secant_method},
                 "2d": {"title": "Solution of Non-linear Equations > Newton-Raphson method", "method": nm.solve_using_newton_raphson_method},
                 "3a": {"title": "Solution of Differential Equations > Runge-Kutta method", "method": nm.solve_using_runge_kutta_method},
-                "4a": {"title": "Matrix Inversion", "method": nm.inverse_matrix},
                 "4": {"title": "Matrix Inversion", "method": nm.inverse_matrix},
             }
 
