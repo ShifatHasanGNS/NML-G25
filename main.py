@@ -13,6 +13,9 @@ if __name__ == '__main__':
                 print("\n\n# ----- Thank you for using NML::G25 ----- #\n")
                 break
 
+            if should_continue.lower() == 'y':
+                nm.clear_screen()
+
             print("\n<<---- Application Catalog ---->>")
             print('''
     1. Solution of Linear Equations
