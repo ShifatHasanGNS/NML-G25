@@ -1,6 +1,4 @@
-Here is your content with the pseudocode sections removed:
 
----
 
 ## Console Application Development Using Numerical Methods
 
