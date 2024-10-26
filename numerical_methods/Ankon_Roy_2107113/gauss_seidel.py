@@ -75,4 +75,4 @@ def solve_using_gauss_seidel_method():
 
     M = M.reshape((rows, cols))
 
-    solve_using_gauss_seidel_method(M)
+    gauss_seidel_method(M)

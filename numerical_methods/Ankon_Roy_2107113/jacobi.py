@@ -74,4 +74,4 @@ def solve_using_jacobi_method():
 
     M = M.reshape((rows, cols))
 
-    solve_using_jacobi_method(M)
+    jacobi_method(M)
