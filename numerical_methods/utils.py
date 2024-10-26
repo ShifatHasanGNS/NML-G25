@@ -1,3 +1,4 @@
+import os
 import numpy as np
 import sympy as sp
 from sympy import exp, log, sin, cos, tan, sinh, cosh, tanh, asin, acos, atan, asinh, acosh, atanh
@@ -5,6 +6,15 @@ from sympy import exp, log, sin, cos, tan, sinh, cosh, tanh, asin, acos, atan, a
 
 # ---------------------------------------- #
 # ---------- For : Shifat Hasan ---------- #
+
+def clear_screen():
+    # For Windows
+    if os.name == 'nt':
+        os.system('cls')
+    # For Mac and Linux (os.name is 'posix')
+    else:
+        os.system('clear')
+
 
 def is_transcendental(equation_str: str):
     try:

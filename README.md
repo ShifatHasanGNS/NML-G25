@@ -92,7 +92,7 @@ The project includes a function for matrix inversion, which is useful for solvin
 
 ---
 
-# Algorithms' Descriptions
+## Algorithms' Descriptions
 
 ### 1. Jacobi Iterative Method
 
