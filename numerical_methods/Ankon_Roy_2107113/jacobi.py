@@ -24,7 +24,7 @@ def make_diagonally_dominant(A):
     return A
 
 
-def solve_using_jacobi_method(augmented_matrix: np.ndarray):
+def jacobi_method(augmented_matrix: np.ndarray):
     mat = make_diagonally_dominant(augmented_matrix)
 
     if mat is None:
@@ -61,7 +61,7 @@ def solve_using_jacobi_method(augmented_matrix: np.ndarray):
     print(f"\nRoots: {x}\n")
 
 
-if __name__ == "__main__":
+def solve_using_jacobi_method():
     n = int(input("Enter the number of linear-equations for your system: "))
     rows, cols = n, n + 1
 
@@ -75,20 +75,3 @@ if __name__ == "__main__":
     M = M.reshape((rows, cols))
 
     solve_using_jacobi_method(M)
-
-
-# Test Input
-'''
-1 2 -1 1 6
--1 1 2 -1 3
-2 -1 2 2 14
-1 1 -1 2 8
-
-Roots: [1  2  3  4]
-
-
-2 1 11
-5 7 11
-
-Roots: [ 7.33333333 -3.66666667]
-'''
