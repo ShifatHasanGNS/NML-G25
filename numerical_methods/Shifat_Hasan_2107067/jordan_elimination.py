@@ -1,69 +1,83 @@
 import numpy as np
 
 
-def row_echelon(Augmented_Matrix: np.ndarray) -> np.ndarray:
-    M = Augmented_Matrix.copy()
-    rows, cols = M.shape
+def row_echelon(Augmented_Matrix: np.ndarray):
+    try:
+        M = Augmented_Matrix.copy()
+        rows, cols = M.shape
 
-    for i in range(min(rows, cols)):
-        if M[i, i] == 0:
+        for i in range(min(rows, cols)):
+            if M[i, i] == 0:
+                for j in range(i+1, rows):
+                    if M[j, i] != 0:
+                        M[[i, j]] = M[[j, i]]
+                        break
+
+            if M[i, i] == 0:
+                continue
+
             for j in range(i+1, rows):
-                if M[j, i] != 0:
-                    M[[i, j]] = M[[j, i]]
-                    break
+                M[j] = M[i, i]*M[j] - M[j, i]*M[i]
 
-        if M[i, i] == 0:
-            continue
+        return M
 
-        for j in range(i+1, rows):
-            M[j] = M[i, i]*M[j] - M[j, i]*M[i]
-
-    return M
+    except Exception as e:
+        print("Error in row_echelon:", e)
+        return None
 
 
-def jordan(Augmented_Matrix: np.ndarray) -> tuple[np.ndarray, list[float]]:
-    M = row_echelon(Augmented_Matrix)
-    n, _ = M.shape
+def jordan(Augmented_Matrix: np.ndarray):
+    try:
+        M = row_echelon(Augmented_Matrix)
+        n, _ = M.shape
 
-    for i in range(n-1, 0, -1):
-        if M[i, i] == 0:
+        for i in range(n-1, 0, -1):
+            if M[i, i] == 0:
+                for j in range(i-1, -1, -1):
+                    if M[j, i] != 0:
+                        M[[i, j]] = M[[j, i]]
+                        break
+
+            if M[i, i] == 0:
+                continue
+
             for j in range(i-1, -1, -1):
-                if M[j, i] != 0:
-                    M[[i, j]] = M[[j, i]]
-                    break
+                M[j] = M[i, i]*M[j] - M[j, i]*M[i]
 
-        if M[i, i] == 0:
-            continue
+        for i in range(n):
+            M[i] = M[i] / M[i, i]
 
-        for j in range(i-1, -1, -1):
-            M[j] = M[i, i]*M[j] - M[j, i]*M[i]
+        X = [M[i, -1] for i in range(n)]
+        X = [np.round(x, 6) for x in X]
 
-    for i in range(n):
-        M[i] = M[i] / M[i, i]
+        return X
 
-    X = [M[i, -1] for i in range(n)]
-    X = [np.round(x, 6) for x in X]
-
-    return M, X
+    except Exception as e:
+        print("Error in jordan:", e)
+        return None
 
 
-def solve_using_jordan_elimination():
-    n = int(input("\nEnter the number of linear-equations for your system: "))
-    rows, cols = n, n + 1
+def solve_using_jordan_elimination_method():
+    try:
+        n = int(input("\nEnter the number of linear-equations for your system: "))
+        rows, cols = n, n + 1
 
-    M = np.array([], dtype=float)
+        M = np.array([], dtype=float)
 
-    print(f"\nEnter the {rows}x{cols} Augmented Matrix (A | b):")
-    for i in range(rows):
-        R = list(map(float, input().split()))
-        M = np.append(M, R)
+        print(f"\nEnter the {rows}x{cols} Augmented Matrix (A | b):")
+        for i in range(rows):
+            R = list(map(float, input().split()))
+            M = np.append(M, R)
 
-    M = M.reshape((rows, cols))
+        M = M.reshape((rows, cols))
 
-    row_echelon_matrix_0 = row_echelon(M)
-    row_echelon_matrix_1, roots = jordan(M)
+        roots = jordan(M)
 
-    print(f"\nRoots: {roots}\n")
+        print(f"\nRoots: {roots}\n")
+
+    except Exception as e:
+        print("Error in solve_using_jordan_elimination_method:", e)
+        return None
 
 
 # Test Input

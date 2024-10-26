@@ -1,14 +1,15 @@
 import numpy as np
 import sympy as sp
-from sympy import symbols, sympify
 from sympy import exp, log, sin, cos, tan, sinh, cosh, tanh, asin, acos, atan, asinh, acosh, atanh
-import numerical_methods as nm
 
+
+# ---------------------------------------- #
+# ---------- For : Shifat Hasan ---------- #
 
 def is_transcendental(equation_str: str):
     try:
-        x = symbols('x')
-        expr = sympify(equation_str)
+        x = sp.symbols('x')
+        expr = sp.sympify(equation_str)
 
         transcendental_funcs = {exp, log, sin, cos, tan, sinh,
                                 cosh, tanh, asin, acos, atan, asinh, acosh, atanh}
@@ -25,9 +26,12 @@ def is_transcendental(equation_str: str):
 
 
 def evaluate(equation_str: str, x_val: float) -> float:
+    equation_str = equation_str.replace("^", "**")
+    equation_str = equation_str.replace("e", "2.7182818285")
+    equation_str = equation_str.replace("pi", "3.1415926536")
     try:
-        x = symbols('x')
-        expr = sympify(equation_str)
+        x = sp.symbols('x')
+        expr = sp.sympify(equation_str)
         result = float(expr.subs(x, x_val))
         return result
     except Exception as e:
@@ -44,6 +48,9 @@ def parse_coefficients(polynomial_expr: str):
 
 
 def cauchys_bound(polynomial_expr: str):
+    polynomial_expr = polynomial_expr.replace("^", "**")
+    polynomial_expr = polynomial_expr.replace("e", "2.7182818285")
+    polynomial_expr = polynomial_expr.replace("pi", "3.1415926536")
     coeffs = parse_coefficients(polynomial_expr)
     number_of_roots = len(coeffs) - 1
     max_coeff = np.max(np.abs(coeffs[1:]))
@@ -51,23 +58,27 @@ def cauchys_bound(polynomial_expr: str):
     return -cauchys_bound_value, cauchys_bound_value, number_of_roots
 
 
-def initial_bound_for_single_root(equation_str: str, x_min: float, x_max: float):
-    step_size = np.abs(x_max - x_min) / nm.STEPS
+# ------------------------------------- #
+# ---------- For : Ankon Roy ---------- #
 
-    a = x_min
-    b = a + step_size
+def take_func_rk():
+    math_function_mapping = {
+        'sin': 'np.sin',
+        'cos': 'np.cos',
+        'tan': 'np.tan',
+        'exp': 'np.exp',
+        'log': 'np.log',
+        'sqrt': 'np.sqrt',
+        'pi': 'np.pi',
+        'e': 'np.e',
+        '^': '**'
+    }
 
-    A, B = nm.evaluate_equation(
-        equation_str, a), nm.evaluate_equation(equation_str, b)
+    function_input = input(
+        "Enter a function of x and y (use 'x' and 'y' as variables) dy/dx = ")
 
-    it_count = 0
+    for func in math_function_mapping:
+        function_input = function_input.replace(
+            func, math_function_mapping[func])
 
-    while A * B > 0 and b <= x_max and it_count < nm.MAX_ITERATIONS:
-        a += step_size
-        b += step_size
-        A, B = nm.evaluate_equation(
-            equation_str, a), nm.evaluate_equation(equation_str, b)
-
-        it_count += 1
-
-    return np.clip(a, x_min, x_max), np.clip(b, x_min, x_max)
+    return lambda x, y: eval(function_input, {"x": x, "y": y, "np": np})

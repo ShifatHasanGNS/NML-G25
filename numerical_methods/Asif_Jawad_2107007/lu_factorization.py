@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def solve_using_lu_factorization():
+def solve_using_lu_factorization_method():
     try:
         n = int(input("Enter the number of linear equations for the system: "))
         if n <= 0:
